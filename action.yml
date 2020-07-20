@@ -31,7 +31,7 @@ inputs:
     default: "1.13.9"
 runs:
   using: "docker"
-  image: "docker://lifepal/helm-eks:v1.1"
+  image: "docker://lifepal/helm-eks:v1"
   args:
     - ${{ inputs.command }}
     - ${{ inputs.eksClusterName }}
