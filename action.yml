@@ -1,4 +1,4 @@
-name: "github-actions-ek8s-toolbox"
+name: "helm-eks"
 description: "Github Action to work with helm charts & AWS EKS."
 author: "Pierre DEMAGNY"
 branding:
@@ -25,25 +25,13 @@ inputs:
     description: "helm version to install."
     required: false
     default: "2.12.1"
-  helmfileVersion:
-    description: "helmfile version to install."
-    required: false
-    default: "0.102.0"
   kubectlVersion:
     description: "kubectl version to install."
     required: false
     default: "1.13.9"
-  istioctlVersion:
-    description: "istioctl version to install."
-    required: false
-    default: "1.1.3"
-  kubevalVersion:
-    description: "kubeval version to install."
-    required: false
-    default: "0.14.0"
 runs:
   using: "docker"
-  image: "docker://pdemagny/github-actions-ek8s-toolbox:v1.1"
+  image: "docker://lifepal/helm-eks:v1.1"
   args:
     - ${{ inputs.command }}
     - ${{ inputs.eksClusterName }}
@@ -51,7 +39,4 @@ runs:
     - ${{ inputs.awsSecretAccessKey }}
     - ${{ inputs.awsDefaultRegion }}
     - ${{ inputs.helmVersion }}
-    - ${{ inputs.helmfileVersion }}
     - ${{ inputs.kubectlVersion }}
-    - ${{ inputs.istioctlVersion }}
-    - ${{ inputs.kubevalVersion }}

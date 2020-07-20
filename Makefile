@@ -1,9 +1,9 @@
 VERSION?=v1
 
 build:
-	docker build -t pdemagny/github-actions-ek8s-toolbox:$(VERSION) . -f Dockerfile
+	docker build -t lifepal/helm-eks:$(VERSION) . -f Dockerfile
 
 push:
-	docker push pdemagny/github-actions-ek8s-toolbox:$(VERSION)
+	docker push lifepal/helm-eks:$(VERSION)
 
 bp: build push
