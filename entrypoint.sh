@@ -4,6 +4,7 @@ set -o pipefail
 
 HOME="/root"
 if [[ -z "${HELM_VERSION}" ]]; then HELM_VERSION="${INPUT_HELMVERSION}"; fi
+if [[ -z "${HELM3_VERSION}" ]]; then HELM3_VERSION="${INPUT_HELMVERSION}"; fi
 if [[ -z "${KUBECTL_VERSION}" ]]; then KUBECTL_VERSION="${INPUT_KUBECTLVERSION}"; fi
 if [[ -z "${AWS_ACCESS_KEY_ID}" ]]; then AWS_ACCESS_KEY_ID="${INPUT_AWSACCESSKEYID}"; fi
 if [[ -z "${AWS_SECRET_ACCESS_KEY}" ]]; then AWS_SECRET_ACCESS_KEY="${INPUT_AWSSECRETACCESSKEY}"; fi
@@ -17,6 +18,13 @@ wget -qO helm-v${HELM_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-v${HE
     chmod +x /usr/local/bin/helm &&
     rm -Rf linux-amd64/ helm-v${HELM_VERSION}-linux-amd64.tar.gz
 helm init --client-only 1>/dev/null 2>&1
+
+echo -e "\n\nhelm-eks: installing helm3..."
+wget -qO helm-v${HELM3_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-v${HELM3_VERSION}-linux-amd64.tar.gz &&
+    tar xzf helm-v${HELM3_VERSION}-linux-amd64.tar.gz &&
+    mv linux-amd64/helm /usr/local/bin/helm3 &&
+    chmod +x /usr/local/bin/helm3 &&
+    rm -Rf linux-amd64/ helm-v${HELM3_VERSION}-linux-amd64.tar.gz
 
 wget -qO /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl &&
     chmod +x /usr/local/bin/kubectl

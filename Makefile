@@ -1,4 +1,4 @@
-VERSION?=v1
+VERSION?=v2
 
 build:
 	docker build -t lifepal/helm-eks:$(VERSION) . -f Dockerfile

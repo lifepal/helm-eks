@@ -24,14 +24,18 @@ inputs:
   helmVersion:
     description: "helm version to install."
     required: false
-    default: "2.12.1"
+    default: "2.14.0"
+  helm3Version:
+    description: "helm3 version to install."
+    required: false
+    default: "3.4.0"
   kubectlVersion:
     description: "kubectl version to install."
     required: false
     default: "1.13.9"
 runs:
   using: "docker"
-  image: "docker://lifepal/helm-eks:v1"
+  image: "docker://lifepal/helm-eks:v1.1"
   args:
     - ${{ inputs.command }}
     - ${{ inputs.eksClusterName }}
